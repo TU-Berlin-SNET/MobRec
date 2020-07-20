@@ -1,0 +1,8 @@
+
+  
+  <ion-content padding *ngIf="(persist$ | async).rehydrated">
+    <h1 padding>In order to use this app you have to connect to your Google Drive account</h1>
+    <p>Click here to connect to your Google Drive account</p>
+    <ion-button expand="full" (click)="authenticate()"><a href="#"></a>authenticate</ion-button>
+  </ion-content>
+  

@@ -1,0 +1,140 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
+    <ion-title>MOVIES</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-segment [(ngModel)]="activeSegment" (ionChange)="onSegmentChange($event)">
+        <ion-segment-button value="search">
+          <ion-label><ion-icon name="search"></ion-icon></ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="movies">
+            <ion-label><ion-icon name="star"></ion-icon></ion-label>
+          </ion-segment-button>
+        <ion-segment-button value="discover">
+          <ion-label>Discover</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="watchlist">
+            <ion-label><ion-icon name="bookmark"></ion-icon></ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    
+    <div *ngIf="activeSegment === 'search'">
+        <div>
+            <form [formGroup]="searchForm" class="form">
+                <ion-item>
+                  <ion-input clearInput formControlName="search" placeholder="Search for movies or shows" autocorrect="off" autocapitalize="none" type="text"></ion-input>
+                </ion-item>
+            </form>
+            <ion-item>
+                <ion-segment [(ngModel)]="type" color="secondary">
+                    <ion-segment-button value="movie" >
+                      <ion-label>Movies</ion-label>
+                    </ion-segment-button>
+                    <ion-segment-button value="tv">
+                        <ion-label>TV shows</ion-label>
+                      </ion-segment-button>
+                  </ion-segment>
+            </ion-item>
+            <ion-button expand="full" fill="clear" (click)="search()">Search</ion-button>
+        </div>
+        <ion-list> 
+            <ion-item *ngFor="let item of (search$ | async); let i = index;">
+              <ion-label>
+                <img *ngIf="!item.image" class="preview" [src]="'http://image.tmdb.org/t/p/original' + item.poster_path" />
+                <img *ngIf="item.image" class="preview" [src]="'http://image.tmdb.org/t/p/original' + item.image" />
+                <h2>{{ item.title ? item.title : item.name }}</h2>
+                <h3>{{ item.release_date | date: 'longDate'}}</h3>
+                <p>{{ item.overview }}</p>
+                <rating [(ngModel)]="item.rating"
+                  readonly="false" 
+                  size="10"
+                  (ngModelChange)="addMovie($event, item, index)">
+                </rating>
+                <div class="actions">
+                    <ion-chip class="white" color="primary" outline *ngIf="!item.watchList" (click)="toggleWatchList(item)">
+                        <ion-icon name="bookmark"></ion-icon>
+                        <ion-label>watchlist</ion-label>
+                    </ion-chip>
+                    <ion-chip  color="primary" *ngIf="item.watchList" (click)="toggleWatchList(item)">
+                        <ion-icon name="bookmark"></ion-icon>
+                        <ion-label>watchlist</ion-label>
+                        <ion-icon name="close-circle"></ion-icon>
+                    </ion-chip>
+                </div>
+              </ion-label>
+            </ion-item>
+        </ion-list>
+    </div>
+    <div *ngIf="activeSegment === 'movies'">
+        <ion-list *ngIf="favorites?.length > 0">
+            <ion-item *ngFor="let movie of favorites">
+                <ion-label>
+                  <img class="preview" [src]="'http://image.tmdb.org/t/p/w154' + movie.image" />
+                  <h2>{{ movie.title ? movie.title : movie.name }}</h2>
+                  <h3>{{ movie.date | date: 'longDate' }}</h3>
+                  <rating [(ngModel)]="movie.rating"
+                  readonly="false" 
+                  size="10"
+                  (ngModelChange)="onRatingChange($event, movie)">
+                </rating>
+                <div class="actions">
+                    <ion-chip class="white" color="primary" outline (click)="clearRating(movie)">
+                        <ion-icon name="star"></ion-icon>
+                        <ion-label>clear rating</ion-label>
+                    </ion-chip>
+                </div>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+    </div>
+    <div *ngIf="activeSegment === 'discover'">
+      <ion-card *ngIf="recommendedMovies.length === 0">
+          <ion-card-header>
+            <ion-card-subtitle>We need some more information</ion-card-subtitle>
+            <ion-card-title>Oops</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+              Please add and rate your favourite movies in order to see recommendations
+          </ion-card-content>
+        </ion-card>
+      <div *ngFor="let movies of recommendedMovies; let i = index;">
+          <p *ngIf="!movies.fromNearby" class="label">Because you liked {{ movies.from }}</p>
+          <p *ngIf="movies.fromNearby" class="label">Because people nearby liked {{ movies.from }}</p>
+          <ion-slides pager="true" [options]="slideOpts" >
+              <ion-slide *ngFor="let movie of movies.results">
+                 <div (click)="presentPopover($event, movie, movies.type, movies.base)">
+                    <img [src]="'http://image.tmdb.org/t/p/w154' + movie.poster_path" />
+                 </div> 
+              </ion-slide>
+            </ion-slides>
+      </div>
+    </div>
+
+    <div *ngIf="activeSegment === 'watchlist'">
+        <ion-list *ngIf="watchlist?.length > 0">
+            <ion-item *ngFor="let movie of watchlist">
+                <ion-label>
+                  <img class="preview" [src]="'http://image.tmdb.org/t/p/w154' + movie.image" />
+                  <h2>{{ movie.title ? movie.title : movie.name }}</h2>
+                  <h3>{{ movie.date | date: 'longDate' }}</h3>
+                  <div class="actions">
+                      <ion-chip class="white" color="primary" outline *ngIf="!movie.watchList" (click)="toggleWatchList(movie)">
+                          <ion-icon name="bookmark"></ion-icon>
+                          <ion-label>watchlist</ion-label>
+                      </ion-chip>
+                      <ion-chip  color="primary" *ngIf="movie.watchList" (click)="toggleWatchList(movie)">
+                          <ion-icon name="bookmark"></ion-icon>
+                          <ion-label>watchlist</ion-label>
+                          <ion-icon name="close-circle"></ion-icon>
+                      </ion-chip>
+                  </div>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+    </div>
+</ion-content>

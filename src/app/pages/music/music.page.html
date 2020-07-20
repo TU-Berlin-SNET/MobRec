@@ -1,0 +1,70 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button (click)="close()"></ion-back-button>
+      </ion-buttons>
+      <ion-title>MUSIC</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content padding>
+    <ion-segment [(ngModel)]="activeSegment" (ionChange)="onSegmentChange($event)">
+        <ion-segment-button value="top">
+            <ion-icon name="heart"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="recent">
+            <ion-icon name="headset"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="nearby">
+            <ion-icon name="contacts"></ion-icon>
+          </ion-segment-button>
+      </ion-segment>
+      <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content></ion-refresher-content>
+        </ion-refresher>
+      <div *ngIf="activeSegment === 'top'">
+          <p class="info">Recommendations based on your favorite tracks</p>
+          <ion-list>
+              <ng-container *ngFor="let track of recommendedTop; let i = index;">
+                  <ion-item >
+                    <ion-label>
+                        <img (click)="openUrl(track.url)" [src]="track.album.images[0].url" />
+                        <ion-icon *ngIf="!isPlayingTop[i]" class="play-btn" name="play" (click)="playTrack(track.id, i, 'top')"></ion-icon>
+                        <ion-icon *ngIf="isPlayingTop[i]" class="play-btn" name="pause" (click)="pauseTrack(i, 'top')"></ion-icon>
+                        <h3>{{ track.artists[0].name }} - {{ track.name }}</h3>
+                    </ion-label>
+                    </ion-item>
+              </ng-container>
+          </ion-list>
+      </div>
+      <div *ngIf="activeSegment === 'recent'">
+          <p class="info">Recommendations based on your latest tracks</p>
+          <ion-list *ngIf="recommendedRecentlyPlayed?.length > 0">
+            <ng-container *ngFor="let track of recommendedRecentlyPlayed; let i = index;">
+                <ion-item>
+                  <ion-label>
+                    <img (click)="openUrl(track.url)" [src]="track.album.images[0].url" />
+                    <ion-icon *ngIf="!isPlayingRecent[i]" class="play-btn" name="play" (click)="playTrack(track.id, i, 'recent')"></ion-icon>
+                        <ion-icon *ngIf="isPlayingRecent[i]" class="play-btn" name="pause" (click)="pauseTrack(i, 'recent')"></ion-icon>
+                    <h3>{{ track.artists[0].name }} - {{ track.name }}</h3>
+                  </ion-label>
+                  </ion-item>
+            </ng-container>
+          </ion-list>
+      </div>
+      <div *ngIf="activeSegment === 'nearby'">
+          <p class="info">Recommendations based on nearby found tracks</p>
+          <ion-list *ngIf="recommendedNearby?.length > 0">
+            <ng-container *ngFor="let track of recommendedNearby; let i = index;">
+                <ion-item>
+                  <ion-label>
+                    <img (click)="openUrl(track.url)" [src]="track.album.images[0].url" />
+                    <ion-icon *ngIf="!isPlayingNearby[i]" class="play-btn" name="play" (click)="playTrack(track.id, i, 'nearby')"></ion-icon>
+                        <ion-icon *ngIf="isPlayingNearby[i]" class="play-btn" name="pause" (click)="pauseTrack(i, 'nearby')"></ion-icon>
+                    <h3>{{ track.artists[0].name }} - {{ track.name }}</h3>
+                  </ion-label>
+                  </ion-item>
+            </ng-container>
+          </ion-list>
+      </div>
+</ion-content>

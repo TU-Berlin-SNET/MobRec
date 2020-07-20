@@ -1,0 +1,37 @@
+.container {
+    margin: 10px;
+}
+
+.close {
+    float: right;
+    font-size: 30px;
+}
+
+.action {
+    margin-left: 10px;
+}
+
+
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.active {
+    color: #3880ff;
+}
+
+.white {
+    background: white;
+}
+
+.action-button-group {
+    display: flex;
+    justify-content: center;
+}
+
+img {
+    max-height: 250px;
+    float: left;
+    margin-right: 20px;
+}

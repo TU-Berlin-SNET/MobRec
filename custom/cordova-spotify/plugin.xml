@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-spotify" version="0.5.8" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>cordova-spotify</name>
+
+    <js-module name="cordova-spotify" src="www/build/cordova-spotify.min.js">
+        <merges target="cordova.plugins" />
+    </js-module>
+
+    <dependency id="es6-promise-plugin"/>
+
+    <platform name="android">
+        <hook type="before_plugin_install" src="install-android.sh" />
+
+        <config-file target="config.xml" parent="/*">
+            <feature name="SpotifyConnector">
+                <param name="android-package" value="rocks.festify.CordovaSpotify" />
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/ConnectionEventsHandler.java" target-dir="src/rocks/festify" />
+        <source-file src="src/android/CordovaSpotify.java" target-dir="src/rocks/festify" />
+        <source-file src="src/android/Emitter.java" target-dir="src/rocks/festify" />
+        <source-file src="src/android/PlayerEventsHandler.java" target-dir="src/rocks/festify" />
+
+        <!--
+            Because Cordova doesn't like linking to AARs, we do some black magic
+            gradle trickery to link against the file.
+         -->
+        <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
+        <resource-file
+            src="src/android/spotify-sdk/spotify-player-24-noconnect-2.20b.aar"
+            target="libs/spotify-sdk.aar" />
+    </platform>
+
+    <platform name="ios">
+
+        <config-file target="config.xml" parent="/*">
+            <feature name="SpotifyConnector">
+                <param name="ios-package" value="CordovaSpotify" />
+            </feature>
+        </config-file>
+
+        <config-file target="*-Info.plist" parent="UIBackgroundModes">
+            <array>
+                <string>audio</string>
+            </array>
+        </config-file>
+
+        <header-file src="src/ios/CordovaSpotify.h" />
+        <source-file src="src/ios/CordovaSpotify.m" />
+        <header-file src="src/ios/CordovaSpotifyEventEmitter.h" />
+        <source-file src="src/ios/CordovaSpotifyEventEmitter.m" />
+        <header-file src="src/ios/AudioStreamingDelegate.h" />
+        <source-file src="src/ios/AudioStreamingDelegate.m" />
+        <header-file src="src/ios/AudioStreamingPlaybackDelegate.h" />
+        <source-file src="src/ios/AudioStreamingPlaybackDelegate.m" />
+        <framework src="AVFoundation.framework" />
+    </platform>
+</plugin>

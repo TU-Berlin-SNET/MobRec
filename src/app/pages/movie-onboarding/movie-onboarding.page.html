@@ -1,0 +1,65 @@
+
+<ion-content>
+    <ion-button (click)="close()">
+      <ion-icon slot="icon-only" name="close"></ion-icon>
+  </ion-button>
+    <ion-slides pager="false" [options]="slideOpts" #slider *ngIf="slidesReady">
+        <ion-slide *ngFor="let slide of slides">
+          <div *ngIf="slide.type === 'movie' || slide.type === 'tv'">
+            <div class="container">
+                <h2>Did you like {{ slide.title }}?</h2>
+            </div>
+            <div class="container">
+                <img [src]="'http://image.tmdb.org/t/p/original' + slide.image" />
+            </div>
+            <div>
+              <rating [(ngModel)]="slide.rating" class="rating"
+                readonly="false" 
+                (ngModelChange)="onRatingChange($event, slide)">
+              </rating>
+            </div>
+            <div class="container" (click)="continue(false)">
+              NOT SEEN
+            </div>
+          </div>
+          <div *ngIf="slide.type === 'tvGenre'">
+              <div class="container">
+                  <h2>{{ slide.title }}</h2>
+              </div>
+
+              <div *ngFor="let genre of tvGenres; let i = index;" (click)="toggleTvGenre(i)" class="genres">
+                  <ion-chip class="white" color="primary" outline *ngIf="!genre.like">
+                      <ion-label>{{ genre.name }}</ion-label>
+                  </ion-chip>
+                  <ion-chip  color="primary" *ngIf="genre.like">
+                      <ion-label>{{ genre.name }}</ion-label>
+                      <ion-icon name="close-circle"></ion-icon>
+                  </ion-chip>
+              </div>
+              <div class="btn-container">
+                    <ion-button (click)="updateGenres(type)" *ngIf="type !== 'movie' && type !== 'tv'" expand="full" class="next-btn">Continue</ion-button>
+            </div>
+              
+          </div>
+
+          <div *ngIf="slide.type === 'movieGenre'">
+              <div class="container">
+                  <h2>{{ slide.title }}</h2>
+              </div>
+              <div *ngFor="let genre of movieGenres; let i = index;" (click)="toggleMovieGenre(i)" class="genres">
+                  <ion-chip class="white" color="primary" outline *ngIf="!genre.like">
+                      <ion-label>{{ genre.name }}</ion-label>
+                  </ion-chip>
+                  <ion-chip  color="primary" *ngIf="genre.like">
+                      <ion-label>{{ genre.name }}</ion-label>
+                      <ion-icon name="close-circle"></ion-icon>
+                  </ion-chip>
+              </div>
+              <div class="btn-container">
+                    <ion-button (click)="updateGenres(type)" *ngIf="type !== 'movie' && type !== 'tv'" expand="full" class="next-btn">Continue</ion-button>
+                  </div>
+          </div>
+          
+        </ion-slide>
+      </ion-slides>
+</ion-content>

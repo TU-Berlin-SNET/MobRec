@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest"
+        id="cordova-plugin-google-nearby"
+        version="1.0.0">
+
+<name>cordova-plugin-google-nearby</name>
+<preference name="API_KEY" />
+<preference name="IOS_API_KEY" />
+
+    
+  <engines>
+    <engine name="cordova" version=">=3.4.0"/>
+  </engines>
+
+  <asset src="www/nearby.js" target="js/nearby.js"/>
+
+  <js-module src="www/nearby.js" name="nearby">
+    <clobbers target="nearby" />
+  </js-module>
+
+  <platform name="android">
+    <preference name="API_KEY" />
+    <framework src="com.google.android.gms:play-services-nearby:15.0.1" />
+    <framework src="com.google.code.gson:gson:2.4" />
+    <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="CDVNearbyPlugin">
+                <param name="android-package" value="org.apache.cordova.plugin.CDVNearbyPlugin" />
+            </feature>
+        </config-file>
+        <config-file parent="/manifest/application" target="AndroidManifest.xml">
+            <service android:exported="false" android:name="org.apache.cordova.plugin.BackgroundSubscribeIntentService" />
+        </config-file>
+       <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <meta-data
+                    android:name="com.google.android.nearby.messages.API_KEY"
+                    android:value="$API_KEY" />
+        </config-file>
+        <config-file parent="/manifest" target="AndroidManifest.xml">
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+            <uses-permission android:name="android.permission.BLUETOOTH" />
+            <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+            <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+        </config-file>
+    <source-file src="src/android/CDVNearbyPlugin.java" target-dir="src/org/apache/cordova/plugin/"/>
+    <source-file src="src/android/BackgroundSubscribeIntentService.java" target-dir="src/org/apache/cordova/plugin/"/>
+     <source-file src="src/android/NearbyDevice.java" target-dir="src/org/apache/cordova/plugin/"/>
+  </platform>
+
+  <platform name="ios">
+      <config-file target="config.xml" parent="/*">
+          <feature name="CDVNearbyPlugin">
+              <param name="ios-package" value="CDVNearbyPlugin" />
+          </feature>
+      </config-file>
+      <config-file target="*-Info.plist" parent="UIBackgroundModes">
+      <array>
+        <string>bluetooth-central</string>
+        <string>bluetooth-peripheral</string>
+      </array>
+    </config-file>
+    <dependency id="cordova-plugin-add-swift-support" version="1.7.2"/>
+    <preference name="BLE_USAGE_DESCRIPTION" default="This app uses bluetooth to discover and be discovered by users nearby" />
+    <config-file target="*-Info.plist" parent="NSBluetoothPeripheralUsageDescription">
+      <string>$BLE_USAGE_DESCRIPTION</string>
+    </config-file>
+      <source-file src="src/ios/CDVNearbyPlugin.swift" />
+      <header-file src="src/ios/Nearby-Bridging-Header.h"/>
+      <config-file target="*-Info.plist" parent="NearbyApiKey">
+          <string>$IOS_API_KEY</string>
+      </config-file>
+       <config-file target="*-Info.plist" parent="CustomScheme">
+          <string>com.eggersimone.mobirec</string>
+      </config-file>
+  </platform>
+</plugin>

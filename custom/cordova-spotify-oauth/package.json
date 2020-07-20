@@ -1,0 +1,73 @@
+{
+  "_from": "cordova-spotify-oauth@0.1.11",
+  "_id": "cordova-spotify-oauth@0.1.11",
+  "_inBundle": false,
+  "_integrity": "sha512-2jz8qD9Wz1GFcHcbsWtlCxBY5A1bX0iGiKc0BRoaiAZ0UQ2sQcrEPkDo1zoaae1FbB2Jmm7LWqAkU9Ab379yIQ==",
+  "_location": "/cordova-spotify-oauth",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "cordova-spotify-oauth@0.1.11",
+    "name": "cordova-spotify-oauth",
+    "escapedName": "cordova-spotify-oauth",
+    "rawSpec": "0.1.11",
+    "saveSpec": null,
+    "fetchSpec": "0.1.11"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-spotify-oauth/-/cordova-spotify-oauth-0.1.11.tgz",
+  "_shasum": "c39fe68a4c00b810d53d5eb7d4b50a3fa1e02cd7",
+  "_spec": "cordova-spotify-oauth@0.1.11",
+  "_where": "/Users/simoneegger/dev/test-ionic",
+  "author": {
+    "name": "Festify Dev Team",
+    "email": "mail+git@festify.rocks"
+  },
+  "bugs": {
+    "url": "https://github.com/Festify/cordova-spotify-oauth/issues"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "Moritz Gunz",
+      "email": "moritz.gunz@gmail.com"
+    },
+    {
+      "name": "Leo Bernard",
+      "email": "admin@leolabs.org"
+    },
+    {
+      "name": "Marcus Weiner",
+      "email": "melodie124@gmail.com"
+    }
+  ],
+  "deprecated": false,
+  "description": "Cordova plugin for authenticating with Spotify",
+  "engines": {
+    "cordovaDependencies": {
+      "0.1.0": {
+        "cordova": "^6.0.0 - 7.0.0"
+      }
+    }
+  },
+  "homepage": "https://github.com/Festify/cordova-spotify-oauth#readme",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "spotify",
+    "oauth"
+  ],
+  "license": "MIT",
+  "main": "www/build/spotify-oauth.min.js",
+  "name": "cordova-spotify-oauth",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Festify/cordova-spotify-oauth.git"
+  },
+  "version": "0.1.11"
+}

@@ -1,0 +1,15 @@
+
+
+
+
+    <div class="container">
+        <h1>How did you like it?</h1>
+        <p>Please give us a rating to improve recommendations for you</p>
+        <rating 
+        [(ngModel)]="movie.rating"
+        readonly="false" 
+        size="10"
+        (ngModelChange)="onRatingChange($event, movie)">
+      </rating>
+    </div>
+    

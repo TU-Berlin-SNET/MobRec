@@ -1,0 +1,17 @@
+{
+  "name": "cordova-plugin-google-nearby",
+  "version": "1.0.0",
+  "description": "This plugin adds support for the [Google Nearby Messages API](https://developers.google.com/nearby/messages/overview)",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simone0893/cordova-plugin-google-nearby"
+  },
+  "author": "Simone Egger",
+  "license": "MIT",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android"
+]
+}

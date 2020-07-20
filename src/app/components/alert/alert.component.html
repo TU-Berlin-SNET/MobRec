@@ -1,0 +1,23 @@
+<ion-content>
+  <div class="container">
+
+    <ng-container *ngIf="errorMsg === 'onboarding'">
+      <div class="title">Formular unvollständig!</div>
+      <div class="sub">Bitte fehlende Andgaben ergänzen.</div>
+    </ng-container>
+
+    <ng-container *ngIf="errorMsg === 'email'">
+      <div class="title">Fehler</div>
+      <div class="sub">Bitte korrekte E-Mail-Adresse eingeben.</div>
+    </ng-container>
+
+    <ng-container *ngIf="errorMsg === 'report'">
+      <div class="title">Formular unvollständig!</div>
+      <div class="sub">Bitte fehlende Andgaben ergänzen.</div>
+    </ng-container>
+    
+    <div class="button-container">
+      <ion-button expand="full" (click)="dismiss()">OK</ion-button>
+    </div>
+  </div>
+</ion-content>

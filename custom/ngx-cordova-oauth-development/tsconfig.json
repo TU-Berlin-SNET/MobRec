@@ -1,0 +1,35 @@
+{
+    "compilerOptions": {
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "sourceMap": false,
+        "removeComments": false,
+        "noImplicitAny": false,
+        "declaration": true,
+        "outDir": ".",
+        "target": "es5",
+        "lib": [
+            "es2017"
+        ],
+        "moduleResolution": "node"
+    },
+    "files": [
+        "src/core.ts",
+        "src/oauth.ts",
+        "src/utility.ts",
+        "src/provider/facebook.ts",
+        "src/provider/google.ts",
+        "src/provider/imgur.ts",
+        "src/provider/instagram.ts",
+        "src/provider/meetup.ts",
+        "src/provider/spotify.ts",
+        "src/provider/linkedin.ts",
+        "src/platform/browser.ts",
+        "src/platform/cordova.ts",
+        "src/platform/safari.ts",
+        "node_modules/typescript/lib/lib.es6.d.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

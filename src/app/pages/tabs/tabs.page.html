@@ -1,0 +1,17 @@
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home" href="tabs/(home:home)">
+      <ion-icon name="md-home"></ion-icon>
+    </ion-tab-button>
+    <ion-tab-button tab="settings" href="tabs/(settings:settings)">
+      <ion-icon name="options"></ion-icon>
+    </ion-tab-button>
+  </ion-tab-bar>
+
+  <ion-tab tab="home">
+    <ion-router-outlet name="home"></ion-router-outlet>
+  </ion-tab>
+  <ion-tab tab="settings">
+    <ion-router-outlet name="settings"></ion-router-outlet>
+</ion-tab>
+</ion-tabs>

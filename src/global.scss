@@ -1,0 +1,28 @@
+// http://ionicframework.com/docs/theming/
+@import '~@ionic/angular/css/core.css';
+@import '~@ionic/angular/css/normalize.css';
+@import '~@ionic/angular/css/structure.css';
+@import '~@ionic/angular/css/typography.css';
+
+@import '~@ionic/angular/css/padding.css';
+@import '~@ionic/angular/css/float-elements.css';
+@import '~@ionic/angular/css/text-alignment.css';
+@import '~@ionic/angular/css/text-transformation.css';
+@import '~@ionic/angular/css/flex-utils.css';
+
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+  app-onboarding {
+    margin-top: 50px;
+  }
+  app-home {
+    margin-top: 20px;
+  }
+}
+
+.popover-content{ 
+  top: 100px;
+  left: 8% !important;
+  transform-origin: left top;
+  transform: scale(1);
+  width: 90% !important;
+}

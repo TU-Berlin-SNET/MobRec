@@ -1,0 +1,20 @@
+{
+  "main": "cordova-oauth.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/cordova": "^0.0.34",
+    "@types/webpack": "^3.0.10",
+    "awesome-typescript-loader": "^3.2.3",
+    "typedoc": "^0.8.0",
+    "typedoc-webpack-plugin": "^1.1.4",
+    "typescript": "^2.4.2",
+    "webpack": "^3.5.5"
+  },
+  "scripts": {
+    "build": "./node_modules/.bin/webpack -p"
+  },
+  "dependencies": {
+    "async": "^2.5.0",
+    "whatwg-fetch": "^2.0.3"
+  }
+}

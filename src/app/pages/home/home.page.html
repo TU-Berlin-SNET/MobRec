@@ -1,0 +1,38 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>MOBIREC</ion-title>
+  </ion-toolbar>
+</ion-header>
+  <ion-content>
+        <div id="map_canvas">
+        </div>
+      <ion-card class="movies" (click)="openMovies()">
+          <ion-item button>
+            <ion-icon name="videocam" slot="start"></ion-icon>
+            <ion-label>MOVIES</ion-label>
+          </ion-item>
+          <ion-card-content>
+          <div class="bg-image"></div>
+          <div class="bg-text" *ngIf="(onboardingFinished$ | async)">
+              <h2>New recommendations for you</h2>
+              <ion-button>Watch now</ion-button>
+          </div>
+          <div class="bg-text" *ngIf="!(onboardingFinished$ | async)">
+              <h2>Discover new movies and tv shows</h2>
+              <ion-button>Start now</ion-button>
+          </div>
+          </ion-card-content>
+        </ion-card>
+          <ion-card href="#" class="music" (click)="navigateForward('music')" button>
+              <ion-item button>
+                <ion-icon name="musical-notes" slot="start"></ion-icon>
+                <ion-label>MUSIC</ion-label>
+              </ion-item>
+              <ion-card-content>
+                <div><img src="assets/img/spotify.png" /></div>
+                <p class="label">Check out new music selected for you</p>
+              </ion-card-content>
+          </ion-card>
+  </ion-content>
+

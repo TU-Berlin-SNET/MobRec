@@ -1,0 +1,73 @@
+{
+  "_from": "cordova-spotify@^0.5.8",
+  "_id": "cordova-spotify@0.5.8",
+  "_inBundle": false,
+  "_integrity": "sha512-aeazpY6GwwP3oaRBMwRdkzX7RxGHziGzsQte+klzAC0yjdWgeWQZSJmIcB/dAPFI3SiLUuF/SY7iqD1OpR87ew==",
+  "_location": "/cordova-spotify",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "cordova-spotify@^0.5.8",
+    "name": "cordova-spotify",
+    "escapedName": "cordova-spotify",
+    "rawSpec": "^0.5.8",
+    "saveSpec": null,
+    "fetchSpec": "^0.5.8"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-spotify/-/cordova-spotify-0.5.8.tgz",
+  "_shasum": "f50373f5959d70d7466bc02cc1b4cf36605ff86c",
+  "_spec": "cordova-spotify@^0.5.8",
+  "_where": "/Users/simoneegger/mobirec",
+  "author": {
+    "name": "Festify Dev Team",
+    "email": "mail+cordova-spotify@festify.rocks"
+  },
+  "bugs": {
+    "url": "https://github.com/Festify/cordova-spotify/issues",
+    "email": "mail+cordova-spotify@festify.rocks"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "Moritz Gunz",
+      "email": "moritz.gunz@gmail.com"
+    },
+    {
+      "name": "Leo Bernard",
+      "email": "admin@leolabs.org"
+    },
+    {
+      "name": "Marcus Weiner",
+      "email": "melodie124@gmail.com"
+    }
+  ],
+  "deprecated": false,
+  "description": "Spotify SDK bindings for Cordova Applications",
+  "engines": {
+    "cordovaDependencies": {
+      "0.2.2": {
+        "cordova": "^6.0.0 - 7.0.0"
+      }
+    }
+  },
+  "homepage": "https://github.com/Festify/cordova-spotify#readme",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "spotify",
+    "sdk"
+  ],
+  "license": "MIT",
+  "name": "cordova-spotify",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Festify/cordova-spotify.git"
+  },
+  "version": "0.5.8"
+}

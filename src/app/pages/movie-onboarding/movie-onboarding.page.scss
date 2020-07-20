@@ -1,0 +1,40 @@
+.container {
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+ion-content{
+    --ion-background-color:#1F1F1F;
+}
+
+ion-slides {
+    height: 100%;
+}
+
+ion-slide.swiper-slide {
+    align-items: flex-start;
+    color: #F1C03F;
+}
+
+.next-btn {
+   bottom:0;
+   width: 100%;
+}
+
+.btn-container {
+    margin-top: 80%;
+}
+
+.genres {
+    display: inline-flex;
+}
+
+ion-button{
+    --box-shadow:none;
+}
+
+.rating {
+    font-size: 40px !important;
+}

@@ -1,0 +1,29 @@
+---
+
+service: oauth-token-api
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: eu-central-1
+  memorySize: 128
+
+package:
+  include:
+    - lib/**
+
+functions:
+  exchangeCode:
+    handler: spotifyTokenService.exchangeCode
+    events:
+      - http:
+          path: exchange
+          method: post
+          cors: true
+  refreshToken:
+    handler: spotifyTokenService.refreshToken
+    events:
+      - http:
+          path: refresh
+          method: post
+          cors: true

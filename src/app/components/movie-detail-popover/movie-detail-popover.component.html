@@ -1,0 +1,27 @@
+<ion-toolbar>
+    <ion-title>{{ movie.title ? movie.title : movie.name }}</ion-title>
+    <ion-buttons slot="secondary">
+        <ion-button [class.active]="movie.watchList" (click)="toggleWatchList(movie)">
+            <ion-icon slot="icon-only" name="bookmark"></ion-icon>
+        </ion-button>
+        <ion-button (click)="toggleAlreadySeen($event, movie)">
+            <ion-icon slot="icon-only" name="checkmark"></ion-icon>
+        </ion-button>
+        <ion-button [class.active]="movie.notInterested" (click)="setNotInterested(movie)">
+            <ion-icon slot="icon-only" name="thumbs-down"></ion-icon>
+        </ion-button>
+        <ion-button (click)="close()">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+</ion-toolbar>
+<div class="container">
+    <img *ngIf="!inList" class="preview" [src]="'http://image.tmdb.org/t/p/original' + movie.poster_path" />
+    <img *ngIf="inList" class="preview" [src]="'http://image.tmdb.org/t/p/original' + movie.image" />
+    <div>
+        <p *ngIf="!inList">{{ movie.release_date | date: 'longDate' }}</p>
+        <p *ngIf="inList">{{ movie.date | date: 'longDate' }}</p>
+        <p>{{ genres }}</p>
+        <p>{{ movie.overview }}</p>
+    </div>
+</div>

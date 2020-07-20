@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+      <form [formGroup]="profileForm" class="form">
+        <ion-item>
+                <ion-label position="stacked">Nickname</ion-label>
+                <ion-input formControlName="nickname"></ion-input>
+          </ion-item>
+        <ion-item>
+            <ion-label>Send nickname</ion-label>
+            <ion-toggle  formControlName="sendNickname" id="sendNickname" [checked]="(profile$ | async).sendNickname" slot="end"></ion-toggle>
+        </ion-item>
+        <ion-item>
+          <ion-label>Send movie data</ion-label>
+          <ion-toggle formControlName="sendMovies" slot="end" [checked]="(profile$ | async).sendMovies"></ion-toggle>
+        </ion-item>
+        <ion-item>
+            <ion-label>Send music data</ion-label>
+            <ion-toggle formControlName="sendMusic" slot="end" [checked]="(profile$ | async).sendMusic"></ion-toggle>
+          </ion-item>
+        <ion-item>
+            <ion-label>Send similarity data</ion-label>
+            <ion-icon name="help-circle" (click)="presentPopover($event)"></ion-icon>
+            <ion-toggle formControlName="sendSimilarity" slot="end" [checked]="(profile$ | async).sendSimilarity"></ion-toggle>
+        </ion-item>
+        </form>
+        <ion-item (click)="forgetSpotify()" *ngIf="(music$ | async).spotify">
+            <ion-icon name="arrow-dropright" slot="end"></ion-icon>
+          Spotify Logout
+        </ion-item>
+        <ion-item (click)="loginSpotify()" *ngIf="!(music$ | async).spotify">
+            <ion-icon name="arrow-dropright" slot="end"></ion-icon>
+          Login with Spotify
+        </ion-item>
+        <ion-item (click)="forgetGoogle()" *ngIf="(profile$ | async).googleAuth">
+            <ion-icon name="arrow-dropright" slot="end"></ion-icon>
+          Google Drive Logout
+        </ion-item>
+        <ion-item (click)="loginWithGoogle()" *ngIf="!(profile$ | async).googleAuth">
+            <ion-icon name="arrow-dropright" slot="end"></ion-icon>
+          Sign In with Google Drive
+        </ion-item>
+      </ion-list>
+      <ion-button expand="full" (click)="save()">
+        Save
+      </ion-button>
+</ion-content>

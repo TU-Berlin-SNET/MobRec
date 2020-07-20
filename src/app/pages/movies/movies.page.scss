@@ -1,0 +1,38 @@
+.preview {
+    max-height: 100px;
+    float: right;
+    margin: 0 0 8px 8px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .label {
+    font-size: 15px;
+    margin-bottom: 5px;
+  }
+
+  ion-segment-button {
+    min-height: 30px;
+
+    ion-icon {
+        font-size: 20px;
+    }
+}
+ion-button{
+  --box-shadow:none;
+}
+
+.actions {
+  margin-top: 20px;
+  background-color: white;
+  padding-top: 10px;
+}
+.white {
+  background: white;
+}
+
+
+  
+  .swiper-wrapper {
+    position: relative;
+  }

@@ -1,0 +1,7 @@
+{
+  "name": "mobirec",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
